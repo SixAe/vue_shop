@@ -90,6 +90,9 @@ export default {
             // console.log(this);
             this.$router.push('/home')
           }
+          // {
+          //   this.$message.error('登录失败')
+          // }
         } else {
           console.log('error submit!!')
           return false
