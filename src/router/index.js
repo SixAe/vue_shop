@@ -4,6 +4,10 @@ import Login from '../components/Login.vue'
 import Home from '../components/Home.vue'
 import Welcome from '../components/Welcome.vue'
 import Users from '../components/users/Users.vue'
+import Rights from '../components/power/Rights.vue'
+import Roles from '../components/power/Roles.vue'
+import Dialog from '../components/test/dialogFrom.vue'
+import PowerM from '../components/power/powerM.vue'
 
 Vue.use(VueRouter)
 
@@ -12,13 +16,18 @@ const routes = [
     path: '/login',
     component: Login
   },
+  { path: '/', component: Home, redirect: '/welcome' },
   {
     path: '/home',
     component: Home,
     redirect: '/welcome',
     children: [
       { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users }
+      { path: '/users', component: Users },
+      { path: '/rights', component: Rights },
+      { path: '/roles', component: Roles },
+      { path: '/dialog', component: Dialog },
+      { path: '/reports', component: PowerM },
     ]
   }
 ]

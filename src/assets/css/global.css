@@ -5,4 +5,31 @@ body,
   height: 100%;
   margin: 0;
   padding: 0;
+  min-width: 1366px;
 }
+.el-scrollbar__wrap {
+  overflow-x: hidden;
+}
+.el-header {
+  position: relative;
+  width: 100%;
+  height: 60px;      
+}
+.el-aside {
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 60px;
+  bottom: 0;
+  transition: all .2s;
+  /* overflow: hidden; */
+  }
+  .el-main {
+    position: absolute;
+    left: 200px;
+    right: 0;
+    top: 60px;
+    bottom: 0;
+    transition: left 0.3s;
+    overflow-y: hidden;
+    }
