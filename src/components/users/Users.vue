@@ -25,10 +25,9 @@
             </el-input>
           </el-col>
           <el-col :span="1">
-            <el-button
-              type="primary"
-              @click="dialogVisible = true"
-            >添加用户</el-button>
+            <el-button type="primary" @click="dialogVisible = true"
+              >添加用户</el-button
+            >
             <el-dialog
               title="添加用户"
               :visible.sync="dialogVisible"
@@ -41,40 +40,22 @@
                 ref="addUserRef"
                 label-width="100px"
               >
-                <el-form-item
-                  label="用户名称"
-                  prop="username"
-                >
+                <el-form-item label="用户名称" prop="username">
                   <el-input v-model="ruleForm.username"></el-input>
                 </el-form-item>
-                <el-form-item
-                  label="用户密码"
-                  prop="password"
-                >
+                <el-form-item label="用户密码" prop="password">
                   <el-input v-model="ruleForm.password"></el-input>
                 </el-form-item>
-                <el-form-item
-                  label="邮箱"
-                  prop="email"
-                >
+                <el-form-item label="邮箱" prop="email">
                   <el-input v-model="ruleForm.email"></el-input>
                 </el-form-item>
-                <el-form-item
-                  label="手机号"
-                  prop="mobile"
-                >
+                <el-form-item label="手机号" prop="mobile">
                   <el-input v-model="ruleForm.mobile"></el-input>
                 </el-form-item>
               </el-form>
-              <span
-                slot="footer"
-                class="dialog-footer"
-              >
+              <span slot="footer" class="dialog-footer">
                 <el-button @click="dialogVisible = false">取 消</el-button>
-                <el-button
-                  type="primary"
-                  @click="addUser"
-                >确 定</el-button>
+                <el-button type="primary" @click="addUser">确 定</el-button>
               </span>
             </el-dialog>
           </el-col>
@@ -83,17 +64,8 @@
           </el-col>
         </el-row>
       </div>
-      <el-table
-        :data="userList"
-        style="width: 100%"
-        border
-        strip
-      >
-        <el-table-column
-          type="index"
-          label="序号"
-          width="80"
-        ></el-table-column>
+      <el-table :data="userList" style="width: 100%" border strip>
+        <el-table-column type="index" label="序号" width="80"></el-table-column>
         <el-table-column
           prop="username"
           label="姓名"
@@ -104,14 +76,8 @@
           label="邮箱"
           width="180"
         ></el-table-column>
-        <el-table-column
-          prop="mobile"
-          label="电话"
-        ></el-table-column>
-        <el-table-column
-          prop="role_name"
-          label="角色"
-        ></el-table-column>
+        <el-table-column prop="mobile" label="电话"></el-table-column>
+        <el-table-column prop="role_name" label="角色"></el-table-column>
         <el-table-column label="状态">
           <!-- 作用域插槽 -->
           <template slot-scope="scope">
@@ -125,10 +91,7 @@
             ></el-switch>
           </template>
         </el-table-column>
-        <el-table-column
-          label="操作"
-          width="190"
-        >
+        <el-table-column label="操作" width="190">
           <template slot-scope="scope">
             <el-tooltip
               class="item"
@@ -157,37 +120,19 @@
                 ref="editUserRef"
                 label-width="100px"
               >
-                <el-form-item
-                  label="用户名称"
-                  prop="username"
-                >
-                  <el-input
-                    v-model="editForm.username"
-                    disabled
-                  ></el-input>
+                <el-form-item label="用户名称" prop="username">
+                  <el-input v-model="editForm.username" disabled></el-input>
                 </el-form-item>
-                <el-form-item
-                  label="邮箱"
-                  prop="email"
-                >
+                <el-form-item label="邮箱" prop="email">
                   <el-input v-model="editForm.email"></el-input>
                 </el-form-item>
-                <el-form-item
-                  label="手机号"
-                  prop="mobile"
-                >
+                <el-form-item label="手机号" prop="mobile">
                   <el-input v-model="editForm.mobile"></el-input>
                 </el-form-item>
               </el-form>
-              <span
-                slot="footer"
-                class="dialog-footer"
-              >
+              <span slot="footer" class="dialog-footer">
                 <el-button @click="editdialogVisible = false">取 消</el-button>
-                <el-button
-                  type="primary"
-                  @click="editUser"
-                >确 定</el-button>
+                <el-button type="primary" @click="editUser">确 定</el-button>
               </span>
             </el-dialog>
             <!-- 删除 -->
@@ -217,6 +162,7 @@
                 size="mini"
                 type="warning"
                 icon="el-icon-setting"
+                @click="setRole(scope.row)"
               ></el-button>
             </el-tooltip>
           </template>
@@ -233,11 +179,39 @@
         :total="total"
       ></el-pagination>
     </el-card>
+    <!-- 分配用户角色 -->
+    <el-dialog
+      title="分配用户角色"
+      :visible.sync="setRoledialogVisible"
+      width="50%"
+    >
+      <div>
+        <p>用户名：{{ userInfo.username }}</p>
+        <p>当前角色：{{ userInfo.role_name }}</p>
+        <div>
+          角色分配：
+          <el-select v-model="currentRoleID" placeholder="请选择">
+            <el-option
+              v-for="item in roleList"
+              :key="item.id"
+              :label="item.roleName"
+              :value="item.id"
+            >
+            </el-option>
+          </el-select>
+        </div>
+      </div>
+
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="setRoledialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 <script>
 export default {
-  data () {
+  data() {
     var checkEmail = (rule, value, callback) => {
       if (!value) {
         return callback()
@@ -312,14 +286,22 @@ export default {
           },
         ],
       },
+      // 分配角色对话框
+      setRoledialogVisible: false,
+      // 角色的用户信息
+      userInfo: '',
+      // 权限列表
+      roleList: [],
+      //当前选中的角色id
+      currentRoleID: '',
     }
   },
-  created () {
+  created() {
     /* 获取用户的数据 */
     this.getUserList()
   },
   methods: {
-    async getUserList () {
+    async getUserList() {
       /* 第一个参数是请求地址，p2:请求参数 */
       const { data } = await this.$http.get('users', { params: this.querInfor })
       // console.log(data)
@@ -329,15 +311,15 @@ export default {
       this.userList = data.data.users
       this.total = data.data.total
     },
-    handleSizeChange (val) {
+    handleSizeChange(val) {
       this.querInfor.pagesize = val
       this.getUserList()
     },
-    handleCurrentChange (val) {
+    handleCurrentChange(val) {
       this.querInfor.pagenum = val
       this.getUserList()
     },
-    async stateChange (val) {
+    async stateChange(val) {
       console.log(val)
       const { data } = await this.$http.put(
         `users/${val.id}/state/${val.mg_state}`
@@ -349,11 +331,11 @@ export default {
       this.$message.success('更新用户信息成功')
     },
     /* 查询用户 */
-    querySearch () {
+    querySearch() {
       this.getUserList()
     },
     /* 添加用户 */
-    addUser () {
+    addUser() {
       // alert('add')
       // 预验证
       this.$refs.addUserRef.validate(async (valid) => {
@@ -373,13 +355,13 @@ export default {
       })
     },
     /* 关闭时的方法 */
-    closeDialog () {
+    closeDialog() {
       /* 注意使用$refs */
       this.$refs.addUserRef.resetFields()
       // ruleForm.resetField()
     },
     //修改用户信息
-    editDialog (val) {
+    editDialog(val) {
       this.editdialogVisible = true
       // console.log(val.id)
       this.editForm.id = val.id
@@ -387,7 +369,7 @@ export default {
       this.editForm.email = val.email
       this.editForm.mobile = val.mobile
     },
-    editUser () {
+    editUser() {
       this.$refs.editUserRef.validate(async (valid) => {
         if (!valid) return
         /* 验证通过后 */
@@ -406,10 +388,10 @@ export default {
         // console.log(data)
       })
     },
-    closeEditDialog () {
+    closeEditDialog() {
       this.$refs.editUserRef.resetFields()
     },
-    async delUser (val) {
+    async delUser(val) {
       // console.log(val)
       const confResult = await this.$confirm('删除该用户, 是否继续?', '提示', {
         confirmButtonText: '确定',
@@ -454,6 +436,44 @@ export default {
       //     message: '已取消删除',
       //   })
       // })
+    },
+    async setRole(userInfo) {
+      this.setRoledialogVisible = true
+      // 获取当前的用户信息
+      this.userInfo = userInfo
+      // t
+      console.log(this.userInfo)
+      // this.currentRoleID = userInfo.id
+      // 获取角色列表
+      const { data } = await this.$http.get('roles')
+      if (data.meta.status !== 200) {
+        return this.$message.error('获取失败')
+      }
+      this.roleList = data.data
+      // console.log(this.roleList)
+      const index = this.roleList.findIndex((item) => {
+        return item.roleName == this.userInfo.role_name
+      })
+      // console.log(index)
+      if (index == -1) {
+        this.currentRoleID = ''
+      } else {
+        this.currentRoleID = this.roleList[index].id
+      }
+    },
+    async saveRoleInfo() {
+      if (!this.currentRoleID) {
+        return this.$message.error('请选择角色值')
+      }
+      const { data } = await this.$http.put(`users/${this.userInfo.id}/role`, {
+        rid: this.currentRoleID,
+      })
+      if (data.meta.status != 200) {
+        return this.$message.error('保存失败')
+      }
+      this.$message.success('更新成功')
+      this.getUserList()
+      this.setRoledialogVisible = false
     },
   },
 }
