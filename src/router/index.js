@@ -8,6 +8,7 @@ import Rights from '../components/power/Rights.vue'
 import Roles from '../components/power/Roles.vue'
 import Dialog from '../components/test/dialogFrom.vue'
 import PowerM from '../components/power/powerM.vue'
+import Cate from '../components/goods/Cate.vue'
 
 Vue.use(VueRouter)
 
@@ -28,6 +29,7 @@ const routes = [
       { path: '/roles', component: Roles },
       { path: '/dialog', component: Dialog },
       { path: '/reports', component: PowerM },
+      { path: '/categories', component: Cate },
     ]
   }
 ]
@@ -47,7 +49,7 @@ router.beforeEach((to, from, next) => {
   const tokenStr = window.sessionStorage.getItem('token')
   if (!tokenStr) {
     return next('/login')
-  }
+  } 
   next()
 })
 

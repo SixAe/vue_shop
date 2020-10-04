@@ -88,6 +88,7 @@
         </el-table-column>
       </el-table>
     </el-card>
+    <!-- 对话框区 -->
     <el-dialog
       title="分配权限"
       :visible.sync="showSetRightDialogVisible"
@@ -225,6 +226,9 @@ export default {
 <style scoped>
 .el-card {
   margin-top: 10px;
+}
+.el-table {
+  margin-top: 15px;
 }
 .el-tag {
   margin: 7px;

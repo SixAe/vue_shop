@@ -107,34 +107,6 @@
                 @click="editDialog(scope.row)"
               ></el-button>
             </el-tooltip>
-            <!-- 修改用户弹框 -->
-            <el-dialog
-              title="修改用户"
-              :visible.sync="editdialogVisible"
-              width="50%"
-              @close="closeEditDialog"
-            >
-              <el-form
-                :model="editForm"
-                :rules="editUserRules"
-                ref="editUserRef"
-                label-width="100px"
-              >
-                <el-form-item label="用户名称" prop="username">
-                  <el-input v-model="editForm.username" disabled></el-input>
-                </el-form-item>
-                <el-form-item label="邮箱" prop="email">
-                  <el-input v-model="editForm.email"></el-input>
-                </el-form-item>
-                <el-form-item label="手机号" prop="mobile">
-                  <el-input v-model="editForm.mobile"></el-input>
-                </el-form-item>
-              </el-form>
-              <span slot="footer" class="dialog-footer">
-                <el-button @click="editdialogVisible = false">取 消</el-button>
-                <el-button type="primary" @click="editUser">确 定</el-button>
-              </span>
-            </el-dialog>
             <!-- 删除 -->
             <el-tooltip
               class="item"
@@ -179,6 +151,7 @@
         :total="total"
       ></el-pagination>
     </el-card>
+    <!-- 对话框区  start-->
     <!-- 分配用户角色 -->
     <el-dialog
       title="分配用户角色"
@@ -207,6 +180,35 @@
         <el-button type="primary" @click="saveRoleInfo">确 定</el-button>
       </span>
     </el-dialog>
+    <!-- 修改用户弹框 -->
+    <el-dialog
+      title="修改用户"
+      :visible.sync="editdialogVisible"
+      width="50%"
+      @close="closeEditDialog"
+    >
+      <el-form
+        :model="editForm"
+        :rules="editUserRules"
+        ref="editUserRef"
+        label-width="100px"
+      >
+        <el-form-item label="用户名称" prop="username">
+          <el-input v-model="editForm.username" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="邮箱" prop="email">
+          <el-input v-model="editForm.email"></el-input>
+        </el-form-item>
+        <el-form-item label="手机号" prop="mobile">
+          <el-input v-model="editForm.mobile"></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer" class="dialog-footer">
+        <el-button @click="editdialogVisible = false">取 消</el-button>
+        <el-button type="primary" @click="editUser">确 定</el-button>
+      </span>
+    </el-dialog>
+    <!-- 对话框区  edn-->
   </div>
 </template>
 <script>
