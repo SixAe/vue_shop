@@ -37,6 +37,9 @@ const router = new VueRouter({
 })
 
 /* 路由守卫 */
+//  to 将要访问的路径
+//  from 代表从哪个路径过来的
+//  next() 放行 next('/login') 强制跳转
 router.beforeEach((to, from, next) => {
   if (to.path === '/login') {
     return next()

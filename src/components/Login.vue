@@ -58,25 +58,25 @@ export default {
     return {
       form: {
         name: 'admin',
-        pass: '123456'
+        pass: '123456',
       },
       rules: {
         name: [
           { required: true, message: '请输入活动名称', trigger: 'blur' },
-          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' }
+          { min: 3, max: 5, message: '长度在 3 到 5 个字符', trigger: 'blur' },
         ],
-        pass: [{ validator: validatePass, trigger: 'blur' }]
-      }
+        pass: [{ validator: validatePass, trigger: 'blur' }],
+      },
     }
   },
 
   methods: {
-    login: function(formName) {
-      this.$refs[formName].validate(async valid => {
+    login: function (formName) {
+      this.$refs[formName].validate(async (valid) => {
         if (valid) {
           const param = {
             username: this.form.name,
-            password: this.form.pass
+            password: this.form.pass,
           }
           const { data, status } = await this.$http.post('login', param)
           // console.log(data)
@@ -99,10 +99,10 @@ export default {
         }
       })
     },
-    reset: function(formName) {
+    reset: function (formName) {
       this.$refs[formName].resetFields()
-    }
-  }
+    },
+  },
 }
 </script>
 
