@@ -9,6 +9,7 @@ import Roles from '../components/power/Roles.vue'
 import Dialog from '../components/test/dialogFrom.vue'
 import PowerM from '../components/power/powerM.vue'
 import Cate from '../components/goods/Cate.vue'
+import Params from '../components/goods/Params.vue'
 
 Vue.use(VueRouter)
 
@@ -30,6 +31,7 @@ const routes = [
       { path: '/dialog', component: Dialog },
       { path: '/reports', component: PowerM },
       { path: '/categories', component: Cate },
+      { path: '/params', component: Params },
     ]
   }
 ]
