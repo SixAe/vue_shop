@@ -1,5 +1,12 @@
-<template> <div>Welcome</div></template>
+<template><div>Welcome</div></template>
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+  created() {},
+  computed: {},
+  methods: {},
+}
 </script>
 <style scoped></style>

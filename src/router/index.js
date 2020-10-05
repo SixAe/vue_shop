@@ -10,28 +10,64 @@ import Dialog from '../components/test/dialogFrom.vue'
 import PowerM from '../components/power/powerM.vue'
 import Cate from '../components/goods/Cate.vue'
 import Params from '../components/goods/Params.vue'
+import List from '../components/goods/List.vue'
+import Add from '../components/goods/Add.vue'
 
 Vue.use(VueRouter)
 
-const routes = [
-  {
+const routes = [{
     path: '/login',
     component: Login
   },
-  { path: '/', component: Home, redirect: '/welcome' },
+  {
+    path: '/',
+    component: Home,
+    redirect: '/welcome'
+  },
   {
     path: '/home',
     component: Home,
     redirect: '/welcome',
-    children: [
-      { path: '/welcome', component: Welcome },
-      { path: '/users', component: Users },
-      { path: '/rights', component: Rights },
-      { path: '/roles', component: Roles },
-      { path: '/dialog', component: Dialog },
-      { path: '/reports', component: PowerM },
-      { path: '/categories', component: Cate },
-      { path: '/params', component: Params },
+    children: [{
+        path: '/welcome',
+        component: Welcome
+      },
+      {
+        path: '/users',
+        component: Users
+      },
+      {
+        path: '/rights',
+        component: Rights
+      },
+      {
+        path: '/roles',
+        component: Roles
+      },
+      {
+        path: '/dialog',
+        component: Dialog
+      },
+      {
+        path: '/reports',
+        component: PowerM
+      },
+      {
+        path: '/categories',
+        component: Cate
+      },
+      {
+        path: '/params',
+        component: Params
+      },
+      {
+        path: '/goods',
+        component: List
+      },
+      {
+        path: '/goods/add',
+        component: Add
+      },
     ]
   }
 ]
@@ -51,7 +87,7 @@ router.beforeEach((to, from, next) => {
   const tokenStr = window.sessionStorage.getItem('token')
   if (!tokenStr) {
     return next('/login')
-  } 
+  }
   next()
 })
 
