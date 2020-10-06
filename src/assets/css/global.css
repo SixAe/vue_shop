@@ -55,3 +55,7 @@ body,
 .el-step__title {
   font-size: 14px !important;
 }
+
+.ql-container {
+  min-height: 300px;
+}
