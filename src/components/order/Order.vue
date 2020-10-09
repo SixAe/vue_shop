@@ -28,25 +28,56 @@
         </el-col>
       </el-row>
       <!-- 数据区 -->
-      <el-table :data="orderList" style="width: 100%" border strip>
-        <el-table-column type="index" label="序号" width="80"></el-table-column>
-        <el-table-column prop="order_number" label="订单编号"></el-table-column>
-        <el-table-column prop="order_price" label="订单价格"></el-table-column>
-        <el-table-column prop="pay_status" label="是否付款">
+      <el-table
+        :data="orderList"
+        style="width: 100%"
+        border
+        strip
+      >
+        <el-table-column
+          type="index"
+          label="序号"
+          width="80"
+        ></el-table-column>
+        <el-table-column
+          prop="order_number"
+          label="订单编号"
+        ></el-table-column>
+        <el-table-column
+          prop="order_price"
+          label="订单价格"
+        ></el-table-column>
+        <el-table-column
+          prop="pay_status"
+          label="是否付款"
+        >
           <template slot-scope="scope">
-            <el-tag v-if="scope.row.pay_status == 1" type="success"
-              >已付款</el-tag
-            >
-            <el-tag v-else type="danger">未付款</el-tag>
+            <el-tag
+              v-if="scope.row.pay_status == 1"
+              type="success"
+            >已付款</el-tag>
+            <el-tag
+              v-else
+              type="danger"
+            >未付款</el-tag>
           </template>
         </el-table-column>
-        <el-table-column prop="is_send" label="是否发货"></el-table-column>
-        <el-table-column prop="create_time" label="下单时间">
+        <el-table-column
+          prop="is_send"
+          label="是否发货"
+        ></el-table-column>
+        <el-table-column
+          prop="create_time"
+          label="下单时间"
+        >
           <template slot-scope="scope">
             {{ scope.row.create_time | dateFormat('YYYY-mm-dd HH:MM') }}
           </template>
         </el-table-column>
-        <el-table-column prop="" label="操作">
+        <el-table-column
+          prop=""
+          label="操作"
+        >
           <template slot-scope="scope">
             <el-tooltip
               class="item"
@@ -108,6 +139,7 @@
         </el-timeline-item>
       </el-timeline>
     </el-dialog>
+    <!--  -->
   </div>
 </template>
 <script>
